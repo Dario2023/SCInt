@@ -13,9 +13,14 @@
     <title>SCInt - Admin</title>
     <!-- CSS start -->
     <section id="container">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
 	    <link href="css/bootstrap-theme.css" rel="stylesheet">
 	    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+	    <link href="css/font-awesome.css" rel="stylesheet">
+	    <link href="css/font-awesome.min.css" rel="stylesheet">
+	    <link href="css/line-icons.css" rel="stylesheet">
 	    <link href="css/style.css" rel="stylesheet">
+	    <link href="css/style-responsive.css" rel="stylesheet">
 	</section>
 	<!-- CSS end -->
   </head>
@@ -86,7 +91,7 @@
 	</section> 
 	    <!--sidebar end-->
   	<!-- container section end -->
-  
+
 	<!-- container javascripts start-->
   	<section id="container">
 	    <script src="js/jquery-1.8.3.min.js"></script>
@@ -96,10 +101,12 @@
     	<script src="js/scripts.js"></script>	   
 	    <!-- bootstrap -->
 	    <script src="js/bootstrap.min.js"></script>
-	</section>
-	         
+	</section>     
 	<!-- container javascripts end-->
 	 
+				  
+                  
+                  
 	  
 	  
   </body>
