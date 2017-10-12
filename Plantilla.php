@@ -14,13 +14,13 @@
     <!-- CSS start -->
     <section id="container">
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <link href="css/bootstrap-theme.css" rel="stylesheet">
-	    <link href="css/elegant-icons-style.css" rel="stylesheet" />
 	    <link href="css/font-awesome.css" rel="stylesheet">
 	    <link href="css/font-awesome.min.css" rel="stylesheet">
 	    <link href="css/line-icons.css" rel="stylesheet">
-	    <link href="css/style.css" rel="stylesheet">
 	    <link href="css/style-responsive.css" rel="stylesheet">
+	    <link href="css/bootstrap-theme.css" rel="stylesheet">
+	    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+	    <link href="css/style.css" rel="stylesheet">
 	</section>
 	<!-- CSS end -->
   </head>
