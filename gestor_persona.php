@@ -31,7 +31,10 @@
                     				</div>
                             <div class="col-lg-2">
                              <input type="submit" value="Buscar" style="position: relative; top: 3px;left: 40px;height: 29px">
-                            </div>       
+                            </div> 
+                            <div class="col-lg-2">
+                             <input type="submit" value="Agregar" style="position: relative; top: 3px;left: 40px;height: 29px">
+                            </div>         
                             </div>
                      	</div>
                     </div>
