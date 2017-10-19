@@ -30,7 +30,7 @@
                              <input type="submit" value="Buscar" style="position: relative; top: 3px;left: 40px;height: 29px">
                             </div> 
                             <div class="col-lg-2">
-                             <input type="submit" value="Agregar" style="position: relative; top: 3px;left: 40px;height: 29px">
+                             <input type="submit" value="Agregar Persona"  onclick="location.href='gestor_persona_cargar_persona.php'" style="position: relative; top: 3px;left: 40px;height: 29px">
                             </div>         
                             </div>
                      	</div>
@@ -41,18 +41,13 @@
                               <tr>
                                  <th><i class="icon_profile"></i> Apellido</th>
                                  <th><i class="icon_profile"></i> Nombre</th>
-                                 <th><i class="icon_mobile"></i> Direccion</th>
+                                 <th><i class="icon_contacts"></i> Direccion</th>
+                                 <th><i class="icon_mobile"></i> Telefono</th>
+                                  <th><i class="icon_cog"></i> Accion</th>
+                                 
                                  
                               </tr>
-                              <?php 
-                                  $extradio_DB = Rellenar_Tabla($Obj_BD);
-                                  foreach ($extradio_DB as $row) {
-                                    echo "<tr>";
-                                    echo "<td>".$row['pers_apellido']."</td>";
-                                    echo "<td>".$row['pers_nombre']."</td>";
-                                    echo "<td>".$row['cont_nro_telefono']."</td>";
-                                    echo "<td>".$row['alum_nfc']."</td>";
-                                    ?>
+                              
                                     <td>
                                   <div class="btn-group">
                                       <a class="btn btn-primary" href= 
@@ -62,9 +57,9 @@
                                          title = "Eliminar"><i class="icon_close_alt2"></i></a>
                                   </div>
                                   </td>
-                                  <?php echo "</tr>";
-                                  } ?>
-                               ?>             
+                                  
+                                  
+                                          
                            </tbody>
                         </table>
 
