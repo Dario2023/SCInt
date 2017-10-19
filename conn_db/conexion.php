@@ -1,5 +1,8 @@
 <?php 
-	include_once 'local.snga';
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'root');
+	define('DB_PASS', '');
+	define('DB_NAME', 'saint');
 
 	function Object_Connection()
 		{
