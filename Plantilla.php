@@ -80,10 +80,22 @@
 	                  </li>          
 	                  <li class="sub-menu">
 	                        <a class="" href="gestor_persona.php">
-	                          <i class="icon_table"></i>
+	                          <i class="icon_contacts_alt"></i>
 	                          <span>Gestor de Persona</span>
 	                        </a>
 	                   </li>
+	                   <li class="sub-menu">
+	                      <a class="" href="gestor_eventos.php">
+	                          <i class="icon_building"></i>
+	                          <span>Gestor de Eventos</span>
+	                      </a>
+	                  </li> 
+	                  <li class="sub-menu">
+	                      <a class="" href="estadisticas.php">
+	                          <i class="icon_datareport"></i>
+	                          <span>Estadisticas</span>
+	                      </a>
+	                  </li> 
 	               </ul>
 	        </div>
 	        <!-- sidebar menu end-->
