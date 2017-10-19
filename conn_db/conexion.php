@@ -2,7 +2,7 @@
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
-	define('DB_NAME', 'saint');
+	define('DB_NAME', 'scint');
 
 	function Object_Connection()
 		{

@@ -15,14 +15,11 @@
                         <div class="col-lg-12">
                         	<div class="row">
                         		<div class="col-lg-4">
-        						           <select class="form-control m-bot15" style="width: 98%">
-        						                <option>Selecionar...</option>
-        						                <option>DNI</option>
-        						                <option>Apellido</option>
-        						                <option>Nombre</option>
-        						                <option>Celular</option>
-        						                <option>Direccion</option>
-        						           </select>
+    					            <select class="form-control m-bot15" style="width: 98%">
+    					                <option>Apellido</option>
+    					                <option>Nombre</option>
+    					                <option>DNI</option>   
+                                    </select>
                             </div>
                             <div class="col-lg-4">
                              	<form class="navbar-form">
@@ -37,67 +34,46 @@
                             </div>         
                             </div>
                      	</div>
+
+                        <!-- aca va la tabla -->
+                        <table class="table table-striped table-advance table-hover">
+                           <tbody>
+                              <tr>
+                                 <th><i class="icon_profile"></i> Apellido</th>
+                                 <th><i class="icon_profile"></i> Nombre</th>
+                                 <th><i class="icon_mobile"></i> Direccion</th>
+                                 
+                              </tr>
+                              <?php 
+                                  $extradio_DB = Rellenar_Tabla($Obj_BD);
+                                  foreach ($extradio_DB as $row) {
+                                    echo "<tr>";
+                                    echo "<td>".$row['pers_apellido']."</td>";
+                                    echo "<td>".$row['pers_nombre']."</td>";
+                                    echo "<td>".$row['cont_nro_telefono']."</td>";
+                                    echo "<td>".$row['alum_nfc']."</td>";
+                                    ?>
+                                    <td>
+                                  <div class="btn-group">
+                                      <a class="btn btn-primary" href= 
+                                         title = "Modificar"><i class="icon_plus_alt2"></i></a>
+                                      
+                                      <a class="btn btn-danger" href= 
+                                         title = "Eliminar"><i class="icon_close_alt2"></i></a>
+                                  </div>
+                                  </td>
+                                  <?php echo "</tr>";
+                                  } ?>
+                               ?>             
+                           </tbody>
+                        </table>
+
                     </div>
                 </div>       
                         
             
 							
-			<div class="row">
-                  <div class="col-lg-12" style="    padding-left: 15px;padding-right: 35px;">
-                      <section class="panel">
-                          <header class="panel-heading">
-                             DATOS
-                          </header>
-                          <div class="panel-body">
-                              <form class="form-horizontal " method="get">
-                                                            
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">APELLIDO</label>
-                                      <div class="col-sm-10">
-                                          <input type="text"  class="form-control" readonly="readonly">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">NOMBRE</label>
-                                      <div class="col-sm-10">
-                                          <input type="text"  class="form-control" readonly="readonly">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">DNI</label>
-                                      <div class="col-sm-10">
-                                          <input type="text"  class="form-control" readonly="readonly" style="width: 200px;">
-                                     </div>     
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">TELEFONO</label>
-                                      <div class="col-sm-10">
-                                          <input type="text"  class="form-control" readonly="readonly" style="width: 200px;">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">DIRECCION</label>
-                                      <div class="col-sm-10">
-                                          <input type="text"  class="form-control" readonly="readonly">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <label class="col-sm-2 control-label">Nº DE CORREDOR</label>
-                                      <div class="col-sm-10">
-                                          <input type="number" name="pechera" class="form-control" writeonly="writeonly" style="width: 100px;">
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <div class="col-sm-10">
-                                          <input type="submit" value="Enviar" style="position: relative; top: 0px;left: 768px;">
-                                      </div>
-                                  </div>                                  
-                              </form>
-                          </div>
-                      </section>
-                                            
-                  </div>
-            </div>
+			
 		</div>
 		</section>
 	</section>		
