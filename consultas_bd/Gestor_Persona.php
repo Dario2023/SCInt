@@ -1,34 +1,12 @@
 <?php 
 	include_once "session.php";
 
-	function contar_sexo($Obj_BD,$sexo){
-	
-	$Sentencia = "SELECT COUNT(SEXO) FROM `acreditacion_datos` WHERE SEXO =".$sexo.";";
-    return $Obj_BD->Consultar_Manual($Sentencia);
-
-	}
-	function contar_localidad($Obj_BD){
-	
-	$Sentencia = "select LOCALIDAD, count(LOCALIDAD) from acreditacion_datos group by LOCALIDAD having count(LOCALIDAD)>0;";
-    return $Obj_BD->Consultar_Manual($Sentencia);
-
-	}
-	function contar_edad($Obj_BD){
-	 
-	$Sentencia = "select EDAD, count(EDAD) from acreditacion_datos group by EDAD having count(EDAD)>0";
-    return $Obj_BD->Consultar_Manual($Sentencia);
-
-	}
-
 	function Rellenar_Tabla($Obj_BD){
 		$Obj_BD->Abrir_Transaccion();
 
-		$Tablas = "acreditacion_datos";
-		$Campos = "ID,APELLIDO,NOMBRE,LOCALIDAD,TELEFONO,EMAIL,SEXO,EDAD,FECHA_ALTA";
-		$Sentencia = "SELECT ".$Campos." FROM ".$Tablas.";";
-    	return $Obj_BD->Consultar_Manual($Sentencia);
+		$Sql = "SELECT apellido, nombre, tab_documento.valor_doc, tab_contacto.valor_cont from tab_persona inner join tab_documento on tab_documento.rela_persona=tab_persona.id_persona inner join tab_contacto on tab_contacto.rela_persona=tab_persona.id_persona;";
+    	return $Obj_BD->Consultar_Manual($Sql);
 	}
-
 	function Insertar($datos = array(), $Obj_BD){
 		$Obj_BD->Abrir_Transaccion(); //INSERTO LA PERSONA
 		$insertar = array('ID' => NULL,
@@ -43,37 +21,27 @@
 		$Obj_BD->insertar('acreditacion_datos',$insertar);
 		$Obj_BD->Confirmar();
 	}
-		
-
 	function Eliminar($Obj_BD, $id){
-		
 
 		$Obj_BD->Abrir_Transaccion(); //ELIMINO LA PERSONA
 		$borrar = array('where' => array('ID' => $id));
 		$OK = $Obj_BD->Borrar('acreditacion_datos',$borrar);
 		$Obj_BD->Confirmar();
-
-		
-
 	}
-
-	
-
 	function Recuperar_Alumno($Obj_BD, $id){
 		$Obj_BD->Abrir_Transaccion();
 		$Sentencia = "SELECT * FROM acreditacion_datos where ID = '".$id."'";
 		return $Obj_BD->Consultar_Manual($Sentencia);
 	}
-
-	
-
 	function Eliminar_Presente($Obj_BD, $id_asistencia){
+
 		$Obj_BD->Abrir_Transaccion();
 		$datos = array('where' => array("tab_asistencia.id_asistencia" => $id_asistencia));
 		$OK = $Obj_BD->Borrar("tab_asistencia", $datos);
 		$Obj_BD->Confirmar();
 	}
-function actualizar($datos = array(), $Obj_BD, $id){
+	function actualizar($datos = array(), $Obj_BD, $id){
+
 		$Obj_BD->Abrir_Transaccion(); //INSERTO LA PERSONA
 		$actualizar = array(
 						 'APELLIDO'=> $datos['apellido'],

@@ -1,6 +1,6 @@
 <?php //Simepre primero esto en todas las paginas exepto index
       include_once "Plantilla.php";
-
+      include_once "../Gestor_Persona.php";
 ?>
 	
 	
@@ -43,20 +43,32 @@
                                  <th><i class="icon_profile"></i> Nombre</th>
                                  <th><i class="icon_contacts"></i> Direccion</th>
                                  <th><i class="icon_mobile"></i> Telefono</th>
-                                  <th><i class="icon_cog"></i> Accion</th>
+                                 <th><i class="icon_profile"></i> DNI</th>
+                                  <th><i class="icon_cog"></i> Acción</th>
                                  
                                  
                               </tr>
-                              
+                              <?php 
+                                  $extradio_DB = Rellenar_Tabla($Obj_BD);
+                                  foreach ($extradio_DB as $row) {
+                                    echo "<tr>";
+                                    echo "<td>".$row['apellido']."</td>";
+                                    echo "<td>".$row['nombre']."</td>";
+                                    echo "<td>".$row['direccion']."</td>";
+                                    echo "<td>".$row['telefono']."</td>";
+                                    echo "<td>".$row['dni']."</td>";
+                                                                        ?>
                                     <td>
                                   <div class="btn-group">
-                                      <a class="btn btn-primary" href= 
+                                      <a class="btn btn-primary" href= <?php echo 'forms-abm\registar-alumno.php?id='.$row['id_persona']; ?>
                                          title = "Modificar"><i class="icon_plus_alt2"></i></a>
                                       
                                       <a class="btn btn-danger" href= 
                                          title = "Eliminar"><i class="icon_close_alt2"></i></a>
                                   </div>
                                   </td>
+                                  <?php echo "</tr>";
+                                  } ?>
                                   
                                   
                                           

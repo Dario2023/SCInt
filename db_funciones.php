@@ -20,14 +20,7 @@
 
 	}
 
-	function Rellenar_Tabla($Obj_BD){
-		$Obj_BD->Abrir_Transaccion();
-
-		$Tablas = "acreditacion_datos";
-		$Campos = "ID,APELLIDO,NOMBRE,LOCALIDAD,TELEFONO,EMAIL,SEXO,EDAD,FECHA_ALTA";
-		$Sentencia = "SELECT ".$Campos." FROM ".$Tablas.";";
-    	return $Obj_BD->Consultar_Manual($Sentencia);
-	}
+	
 
 	function Insertar($datos = array(), $Obj_BD){
 		$Obj_BD->Abrir_Transaccion(); //INSERTO LA PERSONA
