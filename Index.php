@@ -91,7 +91,7 @@
                 <input type="checkbox" value="remember-me"> Recordarme
                 <span class="pull-right"> <a href="#"> ¿Olvido su contraseña?</a></span>
             </label>
-            <button class="btn btn-primary btn-lg btn-block"  type="submit" id="login2">Ingresar</button>
+            <button class="btn btn-primary btn-lg btn-block"  type="submit" id="login2" style="left: 2px;">Ingresar</button>
           </div>
       </form>
   </body>
