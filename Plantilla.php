@@ -17,10 +17,12 @@
 	    <link href="css/font-awesome.css" rel="stylesheet">
 	    <link href="css/font-awesome.min.css" rel="stylesheet">
 	    <link href="css/line-icons.css" rel="stylesheet">
-	    <link href="css/style-responsive.css" rel="stylesheet">
 	    <link href="css/bootstrap-theme.css" rel="stylesheet">
+	    <link href="css/style-responsive.css" rel="stylesheet">
 	    <link href="css/elegant-icons-style.css" rel="stylesheet" />
 	    <link href="css/style.css" rel="stylesheet">
+	    <link href="css/scintstylos.css" rel="stylesheet">
+		
 	</section>
 	<!-- CSS end -->
   </head>
@@ -106,13 +108,18 @@
 
 	<!-- container javascripts start-->
   	<section id="container">
+  		<script src="js/jquery.min.js"></script>
+	    <script src="js/main.js"></script>
 	    <script src="js/jquery-1.8.3.min.js"></script>
 	    <!-- nice scroll -->
-	    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-	    <!--custome script for all page-->
-    	<script src="js/scripts.js"></script>	   
+	    <script src="js/jquery.nicescroll.js"></script>
 	    <!-- bootstrap -->
-	    <script src="js/bootstrap.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>   
+	    <!--custome script for all page-->
+        <script src="js/jquery.slitslider.js"></script>
+		<script src="js/slitslider-custom.js"></script>
+	    <script src="js/custom-scripts.js"></script>
+		
 	</section>     
 	<!-- container javascripts end-->
 	 
