@@ -307,7 +307,7 @@
       </div>
             <section id="tabla_resultado">
             <!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
-            </section
+            </section>
       <div class="form-group">
         <div class="col-lg-4">
           <div class="row">
