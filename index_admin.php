@@ -4,23 +4,18 @@
 ?>
 
 	<section id="main-content">
-        <section class="wrapper">            
-	    	<div class="row">
-	    		<div class="col-lg-12">
+    
+    <section class="wrapper">            
+	    <div class="row">
+	    	<div class="col-lg-12">
 					<h3 class="page-header"><i class="fa fa-file-text"></i>ASISTENCIA</h3>
-				</div>
-            	  
-                        
-            
-							
+				</div>				
 			<div class="row">
-                  <div class="col-lg-12" style="    padding-left: 15px;padding-right: 35px;">
-                      <section class="panel">
-                          <header class="panel-heading">
-                             DATOS
-                          </header>
-                          <div class="panel-body">
-                              <form class="form-horizontal " method="get">
+        <div class="col-lg-12" style="    padding-left: 15px;padding-right: 35px;">
+          <section class="panel">
+            <header class="panel-heading">DATOS</header>
+            <div class="panel-body">
+                <form class="form-horizontal " method="get">
                                                             
                                   <div class="form-group">
                                       <label class="col-sm-2 control-label">APELLIDO</label>

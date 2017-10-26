@@ -5,8 +5,8 @@
 
 	include_once "session.php";
 
-	$filtro = array('where' => array('usu_username' => $_POST['name'],
-									 'usu_password' => $_POST['pwd']
+	$filtro = array('where' => array('nickname' => $_POST['name'],
+									 'password' => $_POST['pwd']
 									 )
 					);
 	$Obj_BD->Abrir_Transaccion();
@@ -14,12 +14,12 @@
 
 			if( $Usuario->rowCount() == 1 ) {
 				foreach ($Usuario as $user){
-					if ($user['usu_estado'] == NULL){
+					if ($user['dispositivo'] == NULL){
 						echo 'off';
-						$_SESSION['user_name'] = $user['usu_username'];
+						$_SESSION['user_name'] = $user['nickname'];
 						$_SESSION['current_id_user'] = $user['id_usuario'];
 						
-						$update = array('usu_estado' => gethostbyaddr($_SERVER['REMOTE_ADDR']));
+						$update = array('dispositivo' => gethostbyaddr($_SERVER['REMOTE_ADDR']));
 						$OK = $Obj_BD->Actualizar('tab_usuario', $update, $filtro);
 						$Obj_BD->Confirmar();
 					}

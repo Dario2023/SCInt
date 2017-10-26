@@ -11,6 +11,37 @@
     background:unset;
 }
 
-.navbar-default .navbar-nav > li > a {
-  color: #ffffff;
+.panel-heading,.modal-header{
+
+background: #F7F7F7;
+
+color: #ff5733;
+}
+
+h1,h2,h3,h4,h5{
+
+    font-weight: 300;
+     color : #ff5733;
+
+}
+
+th{
+  background-color: #3e6fb1;
+  color: #394a59;
+}
+
+.form-control {
+  display: block;
+  width: 70%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #8e8e93;
+  vertical-align: middle;
+  background-color: #ffffff;
+  
+  border-radius: 4px;  
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }

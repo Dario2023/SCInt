@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 21-10-2017 a las 04:58:14
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 19-10-2017 a las 21:10:11
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -96,18 +94,8 @@ CREATE TABLE `tab_contacto` (
   `id_contacto` int(11) NOT NULL,
   `rela_persona` int(11) NOT NULL,
   `rela_tipoc` int(11) NOT NULL,
-  `valor_cont` varchar(200) COLLATE utf8_spanish_ci NOT NULL
+  `valor` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `tab_contacto`
---
-
-INSERT INTO `tab_contacto` (`id_contacto`, `rela_persona`, `rela_tipoc`, `valor_cont`) VALUES
-(1, 2, 2, 'juniorjoelccp@gmail.com'),
-(3, 1, 2, 'gassstonn@gmail.com'),
-(4, 2, 1, '3705008614'),
-(5, 1, 1, '3704673490');
 
 -- --------------------------------------------------------
 
@@ -133,17 +121,8 @@ CREATE TABLE `tab_documento` (
   `id_documento` int(11) NOT NULL,
   `rela_persona` int(11) NOT NULL,
   `rela_tipod` int(11) NOT NULL,
-  `valor_doc` varchar(200) COLLATE utf8_spanish_ci NOT NULL
+  `valor` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `tab_documento`
---
-
-INSERT INTO `tab_documento` (`id_documento`, `rela_persona`, `rela_tipod`, `valor_doc`) VALUES
-(1, 1, 1, '37911798'),
-(9, 2, 1, '95581394'),
-(10, 3, 1, '31072642');
 
 -- --------------------------------------------------------
 
@@ -199,15 +178,6 @@ CREATE TABLE `tab_persona` (
   `sexo` int(11) NOT NULL COMMENT '1 Hombre // 0 mujer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `tab_persona`
---
-
-INSERT INTO `tab_persona` (`id_persona`, `nombre`, `apellido`, `sexo`) VALUES
-(1, 'Gaston', 'Schneider', 1),
-(2, 'Joel', 'Britez', 1),
-(3, 'Dario', 'Aguilera', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -259,14 +229,6 @@ CREATE TABLE `tab_tipo_contacto` (
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `tab_tipo_contacto`
---
-
-INSERT INTO `tab_tipo_contacto` (`id_tipoc`, `cod`, `descri`) VALUES
-(1, 'Cel', 'Celular'),
-(2, 'email', 'Correo Electronico');
-
 -- --------------------------------------------------------
 
 --
@@ -278,15 +240,6 @@ CREATE TABLE `tab_tipo_documento` (
   `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `tab_tipo_documento`
---
-
-INSERT INTO `tab_tipo_documento` (`id_tipod`, `cod`, `descri`) VALUES
-(1, 'DNI', 'Documento Nacional de Identificacion'),
-(2, 'CUIT', 'Codigo Unico de Identificacion Tributaria'),
-(3, 'PAS', 'Pasaporte');
 
 -- --------------------------------------------------------
 
@@ -318,7 +271,7 @@ CREATE TABLE `tab_usuario` (
 --
 
 INSERT INTO `tab_usuario` (`id_usuario`, `usu_username`, `usu_password`, `usu_estado`) VALUES
-(12, 'admin', 'admin', 'ip6-localhost');
+(12, 'admin', 'admin', '');
 
 --
 -- Índices para tablas volcadas
@@ -368,8 +321,8 @@ ALTER TABLE `tab_cliente`
 --
 ALTER TABLE `tab_contacto`
   ADD PRIMARY KEY (`id_contacto`),
-  ADD KEY `rela_tipoc` (`rela_tipoc`) USING BTREE,
-  ADD KEY `rela_persona` (`rela_persona`) USING BTREE;
+  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
+  ADD UNIQUE KEY `rela_tipoc` (`rela_tipoc`);
 
 --
 -- Indices de la tabla `tab_direccion`
@@ -383,8 +336,8 @@ ALTER TABLE `tab_direccion`
 --
 ALTER TABLE `tab_documento`
   ADD PRIMARY KEY (`id_documento`),
-  ADD KEY `rela_tipod` (`rela_tipod`) USING BTREE,
-  ADD KEY `rela_persona` (`rela_persona`) USING BTREE;
+  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
+  ADD UNIQUE KEY `rela_tipod` (`rela_tipod`);
 
 --
 -- Indices de la tabla `tab_estado_nfc`
@@ -467,109 +420,91 @@ ALTER TABLE `tab_usuario`
 --
 ALTER TABLE `arb_ubicacion`
   MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tabinter_pers_direc`
 --
 ALTER TABLE `tabinter_pers_direc`
   MODIFY `id_pers_direc` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tabinter_pers_event`
 --
 ALTER TABLE `tabinter_pers_event`
   MODIFY `id_pers_event` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_categ_ubicacion`
 --
 ALTER TABLE `tab_categ_ubicacion`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_cliente`
 --
 ALTER TABLE `tab_cliente`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_contacto`
 --
 ALTER TABLE `tab_contacto`
-  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_direccion`
 --
 ALTER TABLE `tab_direccion`
   MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_documento`
 --
 ALTER TABLE `tab_documento`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_estado_nfc`
 --
 ALTER TABLE `tab_estado_nfc`
   MODIFY `id_estado_nfc` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_evento`
 --
 ALTER TABLE `tab_evento`
   MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_mesa`
 --
 ALTER TABLE `tab_mesa`
   MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_persona`
 --
 ALTER TABLE `tab_persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_rango`
 --
 ALTER TABLE `tab_rango`
   MODIFY `id_rango` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_tarjeta_nfc`
 --
 ALTER TABLE `tab_tarjeta_nfc`
   MODIFY `id_nfc` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_tipo_cliente`
 --
 ALTER TABLE `tab_tipo_cliente`
   MODIFY `id_tipocl` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tab_tipo_contacto`
 --
 ALTER TABLE `tab_tipo_contacto`
-  MODIFY `id_tipoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_tipoc` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_tipo_documento`
 --
 ALTER TABLE `tab_tipo_documento`
-  MODIFY `id_tipod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_tipod` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_usuario`
 --
 ALTER TABLE `tab_usuario`
   MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -638,7 +573,6 @@ ALTER TABLE `tab_tarjeta_nfc`
   ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_2` FOREIGN KEY (`rela_estado_nfc`) REFERENCES `tab_estado_nfc` (`id_estado_nfc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_3` FOREIGN KEY (`rela_rango`) REFERENCES `tab_rango` (`id_rango`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_4` FOREIGN KEY (`rela_persona`) REFERENCES `tab_persona` (`id_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

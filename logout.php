@@ -3,8 +3,8 @@
 
 	if (!isset($_SESSION['user_name'])) { header("location: index.php"); };
 
-	$update = array('usu_estado' => NULL);
-	$filtro = array('where' => array('usu_username' => $_SESSION['user_name']));
+	$update = array('dispositivo' => NULL);
+	$filtro = array('where' => array('nickname' => $_SESSION['user_name']));
 
 	$Obj_BD->Abrir_Transaccion();
 	$OK = $Obj_BD->Actualizar('tab_usuario', $update, $filtro);
