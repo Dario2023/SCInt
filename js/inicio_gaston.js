@@ -9,14 +9,14 @@ function buscar_datos(consulta) {
 		data: {consulta: consulta},
 	})
 	.done(function(respuesta){
-		$("#inicio").html(respuesta);
+		$("#inicio_gaston").html(respuesta);
 	})
 	.fail(function(){
 		console.log("error");
 	})
 }
 
-$(document).on('keyup','#busqueda',function(){
+$(document).on('keyup','#busqueda_inicio',function(){
 	var valor = $(this).val();
 	if (valor !="") {
 		buscar_datos(valor);
