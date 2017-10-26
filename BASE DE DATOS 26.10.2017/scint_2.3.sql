@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2017 a las 21:10:11
+-- Tiempo de generación: 25-10-2017 a las 23:38:09
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -28,10 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `arb_ubicacion` (
   `id_ubicacion` int(11) NOT NULL,
-  `rela_padre` int(11) NOT NULL,
+  `rela_padre` int(11) DEFAULT NULL,
   `rela_categoria` int(11) NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `arb_ubicacion`
+--
+
+INSERT INTO `arb_ubicacion` (`id_ubicacion`, `rela_padre`, `rela_categoria`, `descri`) VALUES
+(2, NULL, 1, 'Argentina'),
+(3, 2, 2, 'Formosa'),
+(4, 3, 3, 'Formosa'),
+(5, 4, 4, 'Formosa'),
+(6, 3, 3, 'Clorinda'),
+(7, 6, 4, 'Laguna Blanca');
 
 -- --------------------------------------------------------
 
@@ -45,6 +57,13 @@ CREATE TABLE `tabinter_pers_direc` (
   `rela_direccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tabinter_pers_direc`
+--
+
+INSERT INTO `tabinter_pers_direc` (`id_pers_direc`, `rela_persona`, `rela_direccion`) VALUES
+(1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -55,8 +74,23 @@ CREATE TABLE `tabinter_pers_event` (
   `id_pers_event` int(11) NOT NULL,
   `rela_persona` int(11) NOT NULL,
   `rela_evento` int(11) NOT NULL,
-  `rela_mesa` int(11) NOT NULL,
+  `rela_mesa_talle` int(11) NOT NULL,
+  `rela_modalidad` int(11) NOT NULL,
+  `rela_categoria` int(11) NOT NULL,
   `asistencia` int(11) NOT NULL COMMENT '1 = asistio // 0 = falto'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tab_categoria`
+--
+
+CREATE TABLE `tab_categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `observacion` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -67,9 +101,19 @@ CREATE TABLE `tabinter_pers_event` (
 
 CREATE TABLE `tab_categ_ubicacion` (
   `id_categoria` int(11) NOT NULL,
-  `cod` int(11) NOT NULL,
+  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_categ_ubicacion`
+--
+
+INSERT INTO `tab_categ_ubicacion` (`id_categoria`, `cod`, `descri`) VALUES
+(1, 'PA', 'Pais'),
+(2, 'PROV', 'Provincia'),
+(3, 'DEPTO', 'Departamento'),
+(4, 'LOC', 'Localidad');
 
 -- --------------------------------------------------------
 
@@ -84,6 +128,13 @@ CREATE TABLE `tab_cliente` (
   `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tab_cliente`
+--
+
+INSERT INTO `tab_cliente` (`id_cliente`, `rela_persona`, `rela_tipocl`, `fecha_registro`) VALUES
+(1, 1, 1, '2017-10-10');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +147,13 @@ CREATE TABLE `tab_contacto` (
   `rela_tipoc` int(11) NOT NULL,
   `valor` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_contacto`
+--
+
+INSERT INTO `tab_contacto` (`id_contacto`, `rela_persona`, `rela_tipoc`, `valor`) VALUES
+(1, 1, 1, '3704550935');
 
 -- --------------------------------------------------------
 
@@ -110,6 +168,13 @@ CREATE TABLE `tab_direccion` (
   `calle` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `altura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_direccion`
+--
+
+INSERT INTO `tab_direccion` (`id_direccion`, `rela_ubicacion`, `barrio`, `calle`, `altura`) VALUES
+(1, 7, 'San Fransisco de Laishi', 'Martin Rodriguez', 2486);
 
 -- --------------------------------------------------------
 
@@ -156,11 +221,23 @@ CREATE TABLE `tab_evento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tab_mesa`
+-- Estructura de tabla para la tabla `tab_item_evento`
 --
 
-CREATE TABLE `tab_mesa` (
-  `id_mesa` int(11) NOT NULL,
+CREATE TABLE `tab_item_evento` (
+  `id_item_evento` int(11) NOT NULL,
+  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tab_modalidad`
+--
+
+CREATE TABLE `tab_modalidad` (
+  `id_modalidad` int(11) NOT NULL,
   `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -175,21 +252,16 @@ CREATE TABLE `tab_persona` (
   `id_persona` int(11) NOT NULL,
   `nombre` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `apellido` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `Fecha_Nacimiento` date NOT NULL,
   `sexo` int(11) NOT NULL COMMENT '1 Hombre // 0 mujer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `tab_rango`
+-- Volcado de datos para la tabla `tab_persona`
 --
 
-CREATE TABLE `tab_rango` (
-  `id_rango` int(11) NOT NULL,
-  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
-  `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `nivel_importancia` int(11) NOT NULL COMMENT 'calificacion del 1 al 10'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+INSERT INTO `tab_persona` (`id_persona`, `nombre`, `apellido`, `Fecha_Nacimiento`, `sexo`) VALUES
+(1, 'Sebastian', 'Gamarra', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -201,7 +273,6 @@ CREATE TABLE `tab_tarjeta_nfc` (
   `id_nfc` int(11) NOT NULL,
   `mac` int(11) NOT NULL,
   `rela_estado_nfc` int(11) NOT NULL,
-  `rela_rango` int(11) NOT NULL COMMENT 'Depende del evento, indica el nivel administrativo o social de la persona',
   `rela_persona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -213,9 +284,16 @@ CREATE TABLE `tab_tarjeta_nfc` (
 
 CREATE TABLE `tab_tipo_cliente` (
   `id_tipocl` int(11) NOT NULL,
-  `cod` int(11) NOT NULL,
+  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_tipo_cliente`
+--
+
+INSERT INTO `tab_tipo_cliente` (`id_tipocl`, `cod`, `descri`) VALUES
+(1, 'MILL', 'Millonario');
 
 -- --------------------------------------------------------
 
@@ -228,6 +306,14 @@ CREATE TABLE `tab_tipo_contacto` (
   `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_tipo_contacto`
+--
+
+INSERT INTO `tab_tipo_contacto` (`id_tipoc`, `cod`, `descri`) VALUES
+(1, 'TEL', 'Telefono'),
+(3, 'MAIL', 'Email');
 
 -- --------------------------------------------------------
 
@@ -249,9 +335,16 @@ CREATE TABLE `tab_tipo_documento` (
 
 CREATE TABLE `tab_tipo_evento` (
   `id_tipoe` int(11) NOT NULL,
-  `cod` int(11) NOT NULL,
-  `descri` int(200) NOT NULL
+  `cod` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `descri` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_tipo_evento`
+--
+
+INSERT INTO `tab_tipo_evento` (`id_tipoe`, `cod`, `descri`) VALUES
+(1, 'PED', 'Pedestrismo');
 
 -- --------------------------------------------------------
 
@@ -260,18 +353,19 @@ CREATE TABLE `tab_tipo_evento` (
 --
 
 CREATE TABLE `tab_usuario` (
-  `id_usuario` int(10) NOT NULL,
-  `usu_username` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `usu_password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `usu_estado` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Nombre de la maquina'
+  `id_usuario` int(11) NOT NULL,
+  `rela_persona` int(11) NOT NULL,
+  `nickname` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `dispositivo` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tab_usuario`
 --
 
-INSERT INTO `tab_usuario` (`id_usuario`, `usu_username`, `usu_password`, `usu_estado`) VALUES
-(12, 'admin', 'admin', '');
+INSERT INTO `tab_usuario` (`id_usuario`, `rela_persona`, `nickname`, `password`, `dispositivo`) VALUES
+(1, 1, 'admin', 'admin', 'Notebook-PC');
 
 --
 -- Índices para tablas volcadas
@@ -282,25 +376,33 @@ INSERT INTO `tab_usuario` (`id_usuario`, `usu_username`, `usu_password`, `usu_es
 --
 ALTER TABLE `arb_ubicacion`
   ADD PRIMARY KEY (`id_ubicacion`),
-  ADD UNIQUE KEY `rela_padre` (`rela_padre`),
-  ADD UNIQUE KEY `rela_categoria` (`rela_categoria`);
+  ADD KEY `rela_padre_2` (`rela_padre`),
+  ADD KEY `rela_categoria_3` (`rela_categoria`);
 
 --
 -- Indices de la tabla `tabinter_pers_direc`
 --
 ALTER TABLE `tabinter_pers_direc`
   ADD PRIMARY KEY (`id_pers_direc`),
-  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
-  ADD UNIQUE KEY `rela_direccion` (`rela_direccion`);
+  ADD KEY `rela_persona_2` (`rela_persona`),
+  ADD KEY `rela_direccion_2` (`rela_direccion`);
 
 --
 -- Indices de la tabla `tabinter_pers_event`
 --
 ALTER TABLE `tabinter_pers_event`
   ADD PRIMARY KEY (`id_pers_event`),
-  ADD UNIQUE KEY `rela_nfc` (`rela_persona`),
-  ADD UNIQUE KEY `rela_evento` (`rela_evento`),
-  ADD UNIQUE KEY `rela_mesa` (`rela_mesa`);
+  ADD KEY `rela_persona` (`rela_persona`),
+  ADD KEY `rela_evento_2` (`rela_evento`),
+  ADD KEY `rela_mesa` (`rela_mesa_talle`),
+  ADD KEY `rela_modalidad` (`rela_modalidad`),
+  ADD KEY `rela_categoria` (`rela_categoria`);
+
+--
+-- Indices de la tabla `tab_categoria`
+--
+ALTER TABLE `tab_categoria`
+  ADD PRIMARY KEY (`id_categoria`);
 
 --
 -- Indices de la tabla `tab_categ_ubicacion`
@@ -313,31 +415,31 @@ ALTER TABLE `tab_categ_ubicacion`
 --
 ALTER TABLE `tab_cliente`
   ADD PRIMARY KEY (`id_cliente`),
-  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
-  ADD UNIQUE KEY `rela_tipocl` (`rela_tipocl`);
+  ADD KEY `rela_persona_2` (`rela_persona`),
+  ADD KEY `rela_tipocl_2` (`rela_tipocl`);
 
 --
 -- Indices de la tabla `tab_contacto`
 --
 ALTER TABLE `tab_contacto`
   ADD PRIMARY KEY (`id_contacto`),
-  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
-  ADD UNIQUE KEY `rela_tipoc` (`rela_tipoc`);
+  ADD KEY `rela_persona_2` (`rela_persona`),
+  ADD KEY `rela_tipoc_2` (`rela_tipoc`);
 
 --
 -- Indices de la tabla `tab_direccion`
 --
 ALTER TABLE `tab_direccion`
   ADD PRIMARY KEY (`id_direccion`),
-  ADD UNIQUE KEY `rela_ubicacion` (`rela_ubicacion`);
+  ADD KEY `rela_ubicacion_2` (`rela_ubicacion`);
 
 --
 -- Indices de la tabla `tab_documento`
 --
 ALTER TABLE `tab_documento`
   ADD PRIMARY KEY (`id_documento`),
-  ADD UNIQUE KEY `rela_persona` (`rela_persona`),
-  ADD UNIQUE KEY `rela_tipod` (`rela_tipod`);
+  ADD KEY `rela_persona_2` (`rela_persona`),
+  ADD KEY `rela_tipod_2` (`rela_tipod`);
 
 --
 -- Indices de la tabla `tab_estado_nfc`
@@ -350,15 +452,21 @@ ALTER TABLE `tab_estado_nfc`
 --
 ALTER TABLE `tab_evento`
   ADD PRIMARY KEY (`id_evento`),
-  ADD UNIQUE KEY `rela_cliente` (`rela_cliente`),
-  ADD UNIQUE KEY `rela_tipoe` (`rela_tipoe`),
-  ADD UNIQUE KEY `rela_direccion` (`rela_direccion`);
+  ADD KEY `rela_cliente_2` (`rela_cliente`),
+  ADD KEY `rela_tipoe_2` (`rela_tipoe`),
+  ADD KEY `rela_direccion_2` (`rela_direccion`);
 
 --
--- Indices de la tabla `tab_mesa`
+-- Indices de la tabla `tab_item_evento`
 --
-ALTER TABLE `tab_mesa`
-  ADD PRIMARY KEY (`id_mesa`);
+ALTER TABLE `tab_item_evento`
+  ADD PRIMARY KEY (`id_item_evento`);
+
+--
+-- Indices de la tabla `tab_modalidad`
+--
+ALTER TABLE `tab_modalidad`
+  ADD PRIMARY KEY (`id_modalidad`);
 
 --
 -- Indices de la tabla `tab_persona`
@@ -367,19 +475,12 @@ ALTER TABLE `tab_persona`
   ADD PRIMARY KEY (`id_persona`);
 
 --
--- Indices de la tabla `tab_rango`
---
-ALTER TABLE `tab_rango`
-  ADD PRIMARY KEY (`id_rango`);
-
---
 -- Indices de la tabla `tab_tarjeta_nfc`
 --
 ALTER TABLE `tab_tarjeta_nfc`
   ADD PRIMARY KEY (`id_nfc`),
-  ADD UNIQUE KEY `rela_estado_nfc` (`rela_estado_nfc`),
-  ADD UNIQUE KEY `rela_rango` (`rela_rango`),
-  ADD UNIQUE KEY `rela_persona` (`rela_persona`);
+  ADD KEY `rela_estado_nfc_2` (`rela_estado_nfc`),
+  ADD KEY `rela_persona_2` (`rela_persona`);
 
 --
 -- Indices de la tabla `tab_tipo_cliente`
@@ -409,7 +510,8 @@ ALTER TABLE `tab_tipo_evento`
 -- Indices de la tabla `tab_usuario`
 --
 ALTER TABLE `tab_usuario`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `rela_persona_2` (`rela_persona`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -419,37 +521,42 @@ ALTER TABLE `tab_usuario`
 -- AUTO_INCREMENT de la tabla `arb_ubicacion`
 --
 ALTER TABLE `arb_ubicacion`
-  MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tabinter_pers_direc`
 --
 ALTER TABLE `tabinter_pers_direc`
-  MODIFY `id_pers_direc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pers_direc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tabinter_pers_event`
 --
 ALTER TABLE `tabinter_pers_event`
   MODIFY `id_pers_event` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `tab_categoria`
+--
+ALTER TABLE `tab_categoria`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `tab_categ_ubicacion`
 --
 ALTER TABLE `tab_categ_ubicacion`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tab_cliente`
 --
 ALTER TABLE `tab_cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tab_contacto`
 --
 ALTER TABLE `tab_contacto`
-  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tab_direccion`
 --
 ALTER TABLE `tab_direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tab_documento`
 --
@@ -466,20 +573,20 @@ ALTER TABLE `tab_estado_nfc`
 ALTER TABLE `tab_evento`
   MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `tab_mesa`
+-- AUTO_INCREMENT de la tabla `tab_item_evento`
 --
-ALTER TABLE `tab_mesa`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tab_item_evento`
+  MODIFY `id_item_evento` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `tab_modalidad`
+--
+ALTER TABLE `tab_modalidad`
+  MODIFY `id_modalidad` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tab_persona`
 --
 ALTER TABLE `tab_persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tab_rango`
---
-ALTER TABLE `tab_rango`
-  MODIFY `id_rango` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tab_tarjeta_nfc`
 --
@@ -489,22 +596,27 @@ ALTER TABLE `tab_tarjeta_nfc`
 -- AUTO_INCREMENT de la tabla `tab_tipo_cliente`
 --
 ALTER TABLE `tab_tipo_cliente`
-  MODIFY `id_tipocl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipocl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tab_tipo_contacto`
 --
 ALTER TABLE `tab_tipo_contacto`
-  MODIFY `id_tipoc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tab_tipo_documento`
 --
 ALTER TABLE `tab_tipo_documento`
   MODIFY `id_tipod` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `tab_tipo_evento`
+--
+ALTER TABLE `tab_tipo_evento`
+  MODIFY `id_tipoe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `tab_usuario`
 --
 ALTER TABLE `tab_usuario`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
@@ -529,7 +641,9 @@ ALTER TABLE `tabinter_pers_direc`
 ALTER TABLE `tabinter_pers_event`
   ADD CONSTRAINT `tabinter_pers_event_ibfk_1` FOREIGN KEY (`rela_evento`) REFERENCES `tab_evento` (`id_evento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tabinter_pers_event_ibfk_2` FOREIGN KEY (`rela_persona`) REFERENCES `tab_persona` (`id_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `tabinter_pers_event_ibfk_3` FOREIGN KEY (`rela_mesa`) REFERENCES `tab_mesa` (`id_mesa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `tabinter_pers_event_ibfk_3` FOREIGN KEY (`rela_mesa_talle`) REFERENCES `tab_item_evento` (`id_item_evento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tabinter_pers_event_ibfk_4` FOREIGN KEY (`rela_categoria`) REFERENCES `tab_categoria` (`id_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tabinter_pers_event_ibfk_5` FOREIGN KEY (`rela_modalidad`) REFERENCES `tab_modalidad` (`id_modalidad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tab_cliente`
@@ -571,8 +685,13 @@ ALTER TABLE `tab_evento`
 --
 ALTER TABLE `tab_tarjeta_nfc`
   ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_2` FOREIGN KEY (`rela_estado_nfc`) REFERENCES `tab_estado_nfc` (`id_estado_nfc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_3` FOREIGN KEY (`rela_rango`) REFERENCES `tab_rango` (`id_rango`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tab_tarjeta_nfc_ibfk_4` FOREIGN KEY (`rela_persona`) REFERENCES `tab_persona` (`id_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tab_usuario`
+--
+ALTER TABLE `tab_usuario`
+  ADD CONSTRAINT `tab_usuario_ibfk_1` FOREIGN KEY (`rela_persona`) REFERENCES `tab_persona` (`id_persona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
