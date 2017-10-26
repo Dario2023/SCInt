@@ -32,7 +32,7 @@
 				</thead>
 				<tbody>
 
-		<section class='panel'>
+			<section class='panel'>
               <header class='panel-heading'>DATOS</header>
               <div class='panel-body'>
                 <form class='form-horizontal '' method='get'>
@@ -73,7 +73,7 @@
                   </div>                               
                 </form>
               </div>
-        </section>"
+        	</section>"
 
 
 				;	
@@ -88,11 +88,9 @@
 
 				$salida.="</tbody></table>";
 
-				} 
-				else
-				{
+	} else{
 				$salida.="No hay dato";
-				}
+		   }
 				
 				echo $salida;
 				$mysqli->close();

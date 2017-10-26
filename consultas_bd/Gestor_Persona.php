@@ -4,7 +4,11 @@
 	function Rellenar_Tabla($Obj_BD){
 		$Obj_BD->Abrir_Transaccion();
 
-		$Sql = "SELECT apellido, nombre, tab_documento.valor_doc, tab_contacto.valor_cont from tab_persona inner join tab_documento on tab_documento.rela_persona=tab_persona.id_persona inner join tab_contacto on tab_contacto.rela_persona=tab_persona.id_persona;";
+		$Sql = "select id_persona, nombre, apellido,
+				(select valor_doc FROM tab_documento WHERE rela_persona = id_persona) documento,
+				(select valor_cont from tab_contacto WHERE rela_persona = id_persona and rela_tipoc = 1 ) telefono,
+				(select valor_cont from tab_contacto WHERE rela_persona = id_persona and rela_tipoc = 2 ) mail
+					FROM tab_persona";
     	return $Obj_BD->Consultar_Manual($Sql);
 	}
 	function Insertar($datos = array(), $Obj_BD){
