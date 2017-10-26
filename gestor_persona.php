@@ -117,15 +117,15 @@
               <h2 class="section-title">BUSQUEDA</h2>
             </div>
             <div class="panel-body">
-              <form class="na                                                                        vbar-form">
+              <form class="navbar-form">
                 <div class="form-group">
                     <div class="row"  >
                       <div class="col-sm-4">
                         <input class="form-control" autofocus="true" placeholder="Buscar" type="text" name="busqueda" id="busqueda" style="width: 200px; height: 33px; ">  
                       </div>
-                      <label class="col-sm-4 control-label" style="margin: 0px -70px 0px 18px;">TIPO DE EVENTO</label>
+                      <label class="col-sm-4 control-label">TIPO DE EVENTO</label>
                       <div class="col-sm-3"> 
-                        <select class="form-control" style="width: 150px;">
+                        <select class="form-control" style="width: 150px; margin: 0px 100px 0px -90px;">
                           <option>Seleccionar...</option>
                           <option>Cumpleaños</option>
                           <option>Casamineto</option>
@@ -152,7 +152,7 @@
           
             
               
-      
+  
                                  
                                  
                               

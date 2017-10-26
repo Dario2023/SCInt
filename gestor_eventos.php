@@ -6,7 +6,6 @@
 
       if(!isset($_GET['id'])){
 
-      	$_GET['id']= 1;
 		$Sentencia = "SELECT * FROM tab_persona WHERE id_persona = ".$_GET['id'];
 		$resultado = $Obj_BD->Consultar_Manual($Sentencia);
 	}
@@ -22,6 +21,23 @@
 		foreach ($resultado as $persona) { 
       
 ?>
+
+<!-- if(!isset($_GET['id'])) {
+
+    $_GET['id']=$Sentencia = "SELECT * FROM tab_persona WHERE id_persona = ".$_GET['id'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+  }
+  elseif (!isset($_GET['surname'])) {
+      
+    $_GET['surname']=$Sentencia = "SELECT * FROM tab_persona WHERE apellido = ".$_GET['surname'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+  } 
+  elseif (!isset($_GET['name'])) {
+
+    $_GET['name']=$Sentencia = "SELECT * FROM tab_persona WHERE nombre = ".$_GET['name'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+    
+  } -->    
 
 <section id="main-content">
 

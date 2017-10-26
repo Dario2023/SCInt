@@ -43,10 +43,10 @@
 						   <a href="gestor_eventos.php?id='.$fila['id_persona'].'">'.$fila['id_persona'].'</a>
 						   </td>
 						   <td>
-						   <a href="eventos_recepcion.php?surname='.$fila['apellido'].'">'.$fila['apellido'].'</a>
+						   '.$fila['apellido'].'
 						   </td>
 						   <td>
-						   <a href="eventos_recepcion.php?name='.$fila['nombre'].'">'.$fila['nombre'].'</a>
+						   	'.$fila['nombre'].'
 						</td>
 					   
 					   </tr>';
