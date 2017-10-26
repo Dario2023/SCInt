@@ -7,8 +7,8 @@
 
 	function Comprobar_Login_User($Obj_BD) {
 		if ( !empty($_SESSION['user_name']) ) {
-			$filtro = array('select' => 'usu_username, usu_estado',
-							'where' => array('usu_username' => $_SESSION['user_name'], 'usu_estado' => gethostbyaddr($_SERVER['REMOTE_ADDR'])));
+			$filtro = array('select' => 'nickname, dispositivo',
+							'where' => array('nickname' => $_SESSION['user_name'], 'dispositivo' => gethostbyaddr($_SERVER['REMOTE_ADDR'])));
 
 			$Obj_BD = new data_base(Object_Connection());
 			$Obj_BD->Abrir_Transaccion();
@@ -25,12 +25,12 @@
 	}
 
 	function Reanudar_Session($Obj_BD){
-		$Sentencia = "SELECT usu_username, usu_estado FROM tab_usuario where usu_estado = '".gethostbyaddr($_SERVER['REMOTE_ADDR'])."'";
+		$Sentencia = "SELECT nickname, dispositivo FROM tab_usuario where dispositivo = '".gethostbyaddr($_SERVER['REMOTE_ADDR'])."'";
 		$Obj_BD->Abrir_Transaccion();
 		$Usuario = $Obj_BD->Consultar_Manual($Sentencia);
 		if ( $Usuario->rowCount() >= 1 ){
 				foreach ($Usuario as $temp) {
-					$_SESSION['user_name'] = $temp['usu_username'];
+					$_SESSION['user_name'] = $temp['nickname'];
 				}
 			}
 	}

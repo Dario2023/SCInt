@@ -1,378 +1,234 @@
 <?php //Simepre primero esto en todas las paginas exepto index
       include_once "Plantilla.php";
+
+
+     	
+
+      if(!isset($_GET['id'])){
+
+		$Sentencia = "SELECT * FROM tab_persona WHERE id_persona = ".$_GET['id'];
+		$resultado = $Obj_BD->Consultar_Manual($Sentencia);
+	}
+	else{
+		$Sentencia = "SELECT * FROM tab_persona WHERE id_persona = ".$_GET['id'];
+		$resultado = $Obj_BD->Consultar_Manual($Sentencia);
+	}
+		
+	if ($resultado->rowCount() >= 0) {
+		
+											
+
+		foreach ($resultado as $persona) { 
       
 ?>
 
+<!-- if(!isset($_GET['id'])) {
+
+    $_GET['id']=$Sentencia = "SELECT * FROM tab_persona WHERE id_persona = ".$_GET['id'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+  }
+  elseif (!isset($_GET['surname'])) {
+      
+    $_GET['surname']=$Sentencia = "SELECT * FROM tab_persona WHERE apellido = ".$_GET['surname'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+  } 
+  elseif (!isset($_GET['name'])) {
+
+    $_GET['name']=$Sentencia = "SELECT * FROM tab_persona WHERE nombre = ".$_GET['name'];
+    $resultado = $Obj_BD->Consultar_Manual($Sentencia);
+    
+  } -->    
+
 <section id="main-content">
 
-    <section class="wrapper">            
-  	    <div class="row">
-  	    		<div class="col-lg-12">
-  					  <h3 class="page-header"><i class="icon_check"></i>EVENTOS</h3>
-  				  </div>
-            <div id="nav">
-              <nav id="main-nav" class="navbar navbar-default navbar-fixed-top">
-                  <div class="container">
-                      <div class="collapse navbar-collapse navbar-center">
-                          <ul class="nav navbar-nav" style="padding-left: 300px;">
-                              <li class="scroll active"><a href="#genereal">Generales</a></li>
-                              <li class="scroll"><a href="#quinceaño">15 Años</a></li>  
-                              <li class="scroll"><a href="#casamiento">Casaminetos</a></li>
-                              <li class="scroll"><a href="#bautismo">Bautismmos</a></li> 
-                              <li class="scroll"><a href="#cumpleaño">Cumpleaños</a></li>
-                              <li class="scroll"><a href="#deporte">Deportivos</a></li>
-                                 
+	<section class="wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header"><i class="icon_check"></i>EVENTOS</h3>
+			</div>
+			<div id="nav">
+				<div id="main-nav" class="navbar navbar-default navbar-fixed-top">
+					<div class="container">
+						<div class="collapse navbar-collapse navbar-center">
+							<ul class="nav navbar-nav">
+                              <li class="scroll active"><a href="#genereal">General</a></li>
+                              <li class="scroll"><a href="#deporte">Deportivos</a></li>      
                           </ul>
-                      </div>
-                  </div>
-              </nav>
-            </div>  
-        </div>      
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
 	</section>
 
-  <section id="genereal">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">Informacion Generales</h2>
-      </div>
-    </div>      
-    <div class="panel-body">
-        <div class="form-group">  
-            <section class="panel">
-              <header class="panel-heading">DATOS</header>
-              <div class="panel-body">
-                <form class="form-horizontal " method="get">
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">LUGAR</label>
-                      <div class="col-sm-10">
-                        <input type="text"  class="form-control">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">DIRECCION</label>
-                      <div class="col-sm-10">
-                        <input type="text"  class="form-control">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">CONTACTO</label>
-                    <div class="col-sm-10">
-                         <input type="text"  class="form-control">
-                    </div>     
-                  </div>
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label">FECHA INICIO</label>
-                      <div class="col-sm-10">
-                          <input type="date"  class="form-control" style="width: 200px;">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label">FECHA FIN</label>
-                      <div class="col-sm-10">
-                          <input type="date"  class="form-control" style="width: 200px;">
-                      </div>
-                  </div> 
-                  <div class="form-group">
-                      <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                      </div>
-                  </div>                               
-                </form>
-              </div>
-            </section>
-          </div>
-    </div>                      
-  </section>
+	<section id="genereal">
+		<div class="container">
+			<div class="panel-body">
+				<div class="col-lg-12">
+					<section class="panel"> 
+			      		<div class="panel-heading" style="background:rgb(42,85,153);" >
+							<h2 class="section-title">INFORMACION GENERAL</h2>	
+						</div>
+					</section>	
+				</div>		
+			</div>
+		</div>		
+		<div class="container">
+			<div class="panel-body">
+				<div class="col-lg-12">
+					<section class="panel">
+						<div class="panel-heading" style="background:rgb(42,85,153);" >
+							<h2 class="section-title">DATOS</h2>
+						</div>
+						<div class="panel-body">
+							<form class="form-horizontal " method="get">
+											<div class="form-group">
+						                  		<label class="col-sm-2 control-label">LUGAR</label>
+						                  		<div class="col-sm-10">
+						                  			<input type="text"  class="form-control">
+						                  		</div>
+					                  		</div>
+					                  		<div class="form-group">
+					                    		<label class="col-sm-2 control-label">DIRECCION</label>
+					                      		<div class="col-sm-10">
+					                        		<input type="text"  class="form-control">
+					                      		</div>
+					                  		</div>
+					                  		<div class="form-group">
+					                    		<label class="col-sm-2 control-label">CONTACTO</label>
+					                    		<div class="col-sm-10">
+					                         		<input type="text"  class="form-control">
+					                    		</div>     
+					                  		</div>
+					                  		<div class="form-group">
+					                      		<label class="col-sm-2 control-label">FECHA INICIO</label>
+					                      		<div class="col-sm-10">
+					                          		<input type="date"  class="form-control" style="width: 150px;">
+					                      		</div>
+					                  		</div>
+					                  		<div class="form-group">
+					                      		<label class="col-sm-2 control-label">FECHA FIN</label>
+					                      		<div class="col-sm-10">
+					                          		<input type="date"  class="form-control" style="width: 150px;">
+					                      		</div>
+					                  		</div> 
+					                  		<div class="form-group">
+					                      		<div class="col-sm-10">
+					                          		<input type="submit" value="Guardar" style="position: relative; top: 0px;left: 675px;">
+					                      		</div>
+					                  		</div>    
+							</form>	
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>		
+	</section>
 
-  <section id="quinceaño">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">15 Años</h2>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">  
-        <section class="panel">
-          <header class="panel-heading">DATOS</header>
-                <div class="panel-body">
-                  <form class="form-horizontal " method="get">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">LUGAR</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">DIRECCION</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">CONTACTO</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control">
-                        </div>     
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA INICIO</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA FIN</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                        </div>
-                      </div>                               
-                  </form>
-                </div>
-        </section>
-      </div>
-    </div>
-  </section>
+	<section id="deporte">
+    	<div class="container">
+    		<div class="panel-body">
+				<div class="col-lg-12">
+					<section class="panel"> 
+			      		<div class="panel-heading" style="background:rgb(42,85,153);" >
+			        		<h2 class="section-title">DEPORTIVOS</h2>
+			      		</div>
+			      	</section>
+				</div>
+			</div>			      	  	
+      	</div>
 
-  <section id="casamiento">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">Casamientos</h2>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">  
-        <section class="panel">
-          <header class="panel-heading">DATOS</header>
-                <div class="panel-body">
-                  <form class="form-horizontal " method="get">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">LUGAR</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">DIRECCION</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">CONTACTO</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control">
-                        </div>     
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA INICIO</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA FIN</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                        </div>
-                      </div>                               
-                  </form>
-                </div>
-        </section>
-      </div>
-    </div>
-  </section>
+      	<div class="container">
+      		<div class="panel-body">
+				<div class="col-lg-12">
+					<section class="panel">
+						<div class="panel-heading" style="background:rgb(42,85,153);" >
+							<h2 class="section-title">DATOS</h2>
+						</div>
+						<div class="panel-body">
+							<form id="carga" class="form-horizontal " method="get"> 
+								<div class="form-group">
+			                        <label class="col-sm-2 control-label">EVENTO</label>
+			                        <div class="col-sm-10">
+			                        	<select class="form-control m-bot15" style="width: 200px">
+        					                <option>Seleccionar...</option>
+        					                <option>Unf-Corre 2017</option>
+        					                <option>Maraton Rosa 2017</option>
+        					                <option>Nocturna Gasolina 2017</option>   
+                                        </select>
+			                        </div>
+		                      	</div>
+								<div class="form-group">
+			                        <label class="col-sm-2 control-label">APELLIDO</label>
+			                        <div class="col-sm-10">		                        		
+			                        	</select>
+			                        	<input type="text"  class="form-control" value="<?php echo $persona['nombre']; ?>">
+			                        </div>
+		                      	</div>
+		                      	<div class="form-group">
+			                        <label class="col-sm-2 control-label">NOMBRE</label>
+			                        <div class="col-sm-10">
+			                           <input type="text"  class="form-control" value="<?php echo $persona['apellido']; ?>">
+			                        </div>
+		                       	</div>
+		                       	<div class="form-group">
+			                        <label class="col-sm-2 control-label">DIRECCION</label>
+			                        <div class="col-sm-10">
+			                           <input type="text"  class="form-control">
+			                        </div>
+		                       	</div>
+		                       	<div class="form-group" class="col-lg-12">
+		                       		<div class="row"  >
+			                        	<label class="col-lg-2 control-label">TELEFONO</label>
+				                        <div class="col-lg-2">
+				                            <input type="tel"  name="telefono" placeholder="3704" pattern="[0-9]{10}" class="form-control" style="width: 60px; margin-left: -7px " >
+				                        </div>
+				                        <label style=" margin-left: -607px ;">__</label>
+				                        <div class ="col-lg-6">
+				                            <input type="tel"  name="telefono" placeholder="628661" pattern="[0-9]{10}" class="form-control" style="width: 80px; margin-left: -62px ;">
+				                        </div> 
+			                        </div>
+		                      	</div>
+		                      	<div class="form-group">
+			                        <label class="col-sm-2 control-label">CATEGORIA</label>
+			                        <div class="col-sm-10">
+			                            <input type="number" class="form-control" style="width: 200px;">
+			                        </div>
+		                      	</div> 
+		                      	<div class="form-group">
+			                        <label class="col-sm-2 control-label">Nº DE CORREDOR</label>
+			                        <div class="col-sm-10">
+			                            <input type="number" class="form-control" style="width: 80px;">
+			                        </div>
+		                      	</div> 
 
-  <section id="bautismo">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">Bautismos</h2>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">  
-        <section class="panel">
-          <header class="panel-heading">DATOS</header>
-                <div class="panel-body">
-                  <form class="form-horizontal " method="get">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">LUGAR</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">DIRECCION</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">CONTACTO</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control">
-                        </div>     
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA INICIO</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA FIN</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                        </div>
-                      </div>                               
-                  </form>
-                </div>
-        </section>
-      </div>
-    </div>
-  </section>
+		                      	<div class="form-group">
+			                        <label class="col-sm-2 control-label">TALLE</label>
+			                        <div class="col-sm-10">
+			                            <input type="number" class="form-control" style="width: 80px;">
+			                        </div>
+		                      	</div> 
+		                      	<div class="form-group">
+			                        <div class="col-sm-10">
+			                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 675px;">
+			                        </div>
+		                      	</div>
+							</form>
 
-  <section id="cumpleaño">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">Cumpleaños</h2>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">  
-        <section class="panel">
-          <header class="panel-heading">DATOS</header>
-                <div class="panel-body">
-                  <form class="form-horizontal " method="get">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">LUGAR</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">DIRECCION</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">CONTACTO</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control">
-                        </div>     
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA INICIO</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">FECHA FIN</label>
-                        <div class="col-sm-10">
-                            <input type="date"  class="form-control" style="width: 200px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                        </div>
-                      </div>                               
-                  </form>
-                </div>
-        </section>
-      </div>
-    </div>
-  </section>
-
-  <section id="deporte">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title wow fadeInDown">Deportivos</h2>
-      </div>
-            <section id="tabla_resultado">
-            <!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
-            </section>
-      <div class="form-group">
-        <div class="col-lg-4">
-          <div class="row">
-            <form class="navbar-form">
-              <input class="form-control" placeholder="Buscar" type="text" name="busqueda" id="busqueda" style="width: 125%; height: 33px; margin-left: -30px;">
-            </form>
-          </div>         
-        </div>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">  
-        <section class="panel">
-          <header class="panel-heading">DATOS</header>
-                <div class="panel-body">
-                  <form class="form-horizontal " method="get">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">APELLIDO</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">NOMBRE</label>
-                        <div class="col-sm-10">
-                          <input type="text"  class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">DIRECCION</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control">
-                        </div>     
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">TELEFONO</label>
-                        <div class="col-sm-10">
-                            <input type="tel"  name="telefono" placeholder="3704628661" pattern="[0-9]{10}" class="form-control" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">TALLE</label>
-                        <div class="col-sm-10">
-                            <input type="text"  class="form-control" style="width: 80px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">Nº DE CORREDOR</label>
-                        <div class="col-sm-10">
-                            <input type="number"  class="form-control" style="width: 80px;">
-                        </div>
-                      </div> 
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="submit" value="Guardar" style="position: relative; top: 0px;left: 768px;">
-                        </div>
-                      </div>                               
-                  </form>
-                </div>
-        </section>
-      </div>
-    </div>
-  </section>
+<?php 
+								} 
+									}
+?>
+						</div>
+                    </section>
+               </div>
+            </div>
+      	</div>	
+    </section>
 
 </section>
+
+	
 
 
   

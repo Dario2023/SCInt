@@ -1,0 +1,16 @@
+<?php 
+	
+
+	//include_once 'calculoCondicion.php';
+
+	$personas  = array(array( 'id' => 1,
+							 'apellido' => 'argento',
+							 'nombre' => 'pepe',
+							 ),
+					array('id' => 2,
+							 'apellido nombre' => 'cacarulo moni',
+							 'nombre' => 'moni',
+							),
+						);
+
+		
