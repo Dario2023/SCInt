@@ -73,27 +73,27 @@
 	    <aside>
 	        <!-- sidebar menu start-->
 	        <div id="sidebar"  class="nav-collapse ">
-	              <ul class="sidebar-menu">                
+	              <ul class="sidebar-menu" id="inicio">                
 	                  <li class="sub-menu">
 	                      <a class="" href="index_admin.php">
 	                          <i class="icon_house_alt"></i>
 	                          <span>Inicio</span>
 	                      </a>
 	                  </li>          
-	                  <li class="sub-menu">
+	                  <li class="sub-menu" id="gpersona">
 	                        <a class="" href="gestor_persona.php">
 	                          <i class="icon_contacts_alt"></i>
 	                          <span>Gestor de Persona</span>
 	                        </a>
 	                   </li>
 	                   <li class="sub-menu">
-	                      <a class="" href="gestor_eventos.php">
+	                      <a class="" href="gestor_eventos.php" id="gevento">
 	                          <i class="icon_building"></i>
 	                          <span>Gestor de Eventos</span>
 	                      </a>
 	                  </li> 
 	                  <li class="sub-menu">
-	                      <a class="" href="estadisticas.php">
+	                      <a class="" href="estadisticas.php" id="estadistica">
 	                          <i class="icon_datareport"></i>
 	                          <span>Estadisticas</span>
 	                      </a>
