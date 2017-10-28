@@ -24,7 +24,7 @@
         <div class="col-lg-4">
           <div class="row">
             <form class="navbar-form">
-              <input class="form-control" placeholder="Buscar" type="text" name="busqueda_inicio" id="inicio_gaston" style="width: 125%; height: 33px; margin-left: -30px;">
+              <input class="form-control" autofocus="true" placeholder="Buscar" type="text" name="busqueda" id="busqueda_inicio" style="width: 200px; height: 33px; ">
             </form>
           </div>         
         </div>

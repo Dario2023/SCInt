@@ -18,11 +18,49 @@
 		$resultado = $Obj_BD->Consultar_Manual($Sentencia);
 	}
 
+	if(isset($_POST['mac'])){
+		$Sentencia = "SELECT nombre,apellido  FROM tab_persona, tab_tarjeta_nfc  WHERE mac=702717645 and id_persona = rela_persona;";
+
+		$Obj_BD->Abrir_Transaccion();
+		$resultado2 = $Obj_BD->Consultar_Manual($Sentencia);
+	}
+
+
+
 	$salida="";
 
 	if ($resultado->rowCount() > 0) {
 		
-		$salida.='<table class="tabla_datos" >
+		$salida.='<form class="form-horizontal " method="get">
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">APELLIDO</label>
+                      <div class="col-sm-10">
+                          <label class="col-sm-2 control-label">hol</label>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">NOMBRE</label>
+                      <div class="col-sm-10">
+                          <input type="text"  class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">DNI</label>
+                      <div class="col-sm-10">
+                          <input type="text"  class="form-control" style="width: 200px;">
+                      </div>     
+                  </div>
+                   <div class="form-group">
+                      <label class="col-sm-2 control-label">CUIL</label>
+                      <div class="col-sm-10">
+                          <input type="text"  class="form-control" style="width: 200px;">
+                      </div>
+                               
+              </form>
+
+
+
+		<table class="tabla_datos" >
 				<thead>
 					<tr>
 						<th><i class="icon_paperclip"></i> N°</th>
@@ -37,7 +75,7 @@
 				</thead>
 				<tbody>';	
 
-		foreach ($resultado as $fila) {
+		foreach ($resultado2 as $fila) {
 			$salida.= '<tr>
 					   	<td>
 						   <a href="gestor_eventos.php?id='.$fila['id_persona'].'">'.$fila['id_persona'].'</a>
